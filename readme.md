@@ -9,11 +9,11 @@ The data is remapped to ensure unique nodeIds and relationship types.
 TODO: description of graph connectivity
 
 ## How to use
-* install Neo4j 4.1.3 (https://neo4j.com/docs/operations-manual/current/installation/)
+* install Neo4j 5.x (https://neo4j.com/docs/operations-manual/current/installation/)
 * install requirements.txt
 * `cd football_event_graph/scripts`
 * `python process_files_for_neo4j_import.py <matchMetadataFilepath> <matchEventsFilepath> <processedFileSaveDir>`
-* `./build_new_database.sh <processedFileSaveDir>`
+* `./build_new_database_neo4j_v5.sh <processedFileSaveDir>`
 * `./start_neo4j.sh` (requires Docker)
 * database should then be running on localhost:7474
 
