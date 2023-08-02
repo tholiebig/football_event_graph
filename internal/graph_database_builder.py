@@ -31,7 +31,14 @@ from store.graph_output_handlers.output_handler_base import RelationOutputHandle
 from utils.dataframe_functions import replace_nan_with_none_in_dataframe
 
 
+def float_remove_na(value) -> float:
+        if ( math.isnan(value) ):
+            return ""
+        else:
+            return float(value)
+        
 class GraphDatabaseBuilder:
+        
     def __init__(
         self,
         nodeOutputHandler: NodeOutputHandlerBase,
@@ -120,13 +127,13 @@ class GraphDatabaseBuilder:
             nodeProperties = {
                 NodeField.FULLTIME_HOME_GOALS: metadataRow["fthg"],
                 NodeField.FULLTIME_AWAY_GOALS: metadataRow["ftag"],
-                NodeField.HOME_ODDS: metadataRow["odd_h"],
-                NodeField.AWAY_ODDS: metadataRow["odd_a"],
-                NodeField.DRAW_ODDS: metadataRow["odd_d"],
-                NodeField.OVER_25_GOAL_ODDS: metadataRow["odd_over"],
-                NodeField.UNDER_25_GOAL_ODDS: metadataRow["odd_under"],
-                NodeField.BOTH_TEAMS_TO_SCORE_ODDS: metadataRow["odd_bts"],
-                NodeField.NOT_BOTH_TEAMS_TO_SCORE_ODDS: metadataRow["odd_bts_n"],
+                NodeField.HOME_ODDS: float_remove_na(metadataRow["odd_h"]),
+                NodeField.AWAY_ODDS: float_remove_na(metadataRow["odd_a"]),
+                NodeField.DRAW_ODDS: float_remove_na(metadataRow["odd_d"]),
+                NodeField.OVER_25_GOAL_ODDS: float_remove_na(metadataRow["odd_over"]),
+                NodeField.UNDER_25_GOAL_ODDS: float_remove_na(metadataRow["odd_under"]),
+                NodeField.BOTH_TEAMS_TO_SCORE_ODDS: float_remove_na(metadataRow["odd_bts"]),
+                NodeField.NOT_BOTH_TEAMS_TO_SCORE_ODDS: float_remove_na(metadataRow["odd_bts_n"]),
             }
             matchId = MatchId(matchId=metadataRow["id_odsp"])
             self.nodeOutputHandler.add(
