@@ -17,5 +17,15 @@ TODO: description of graph connectivity
 * `./start_neo4j.sh` (requires Docker)
 * database should then be running on localhost:7474
 
+### Set indexes (optional)
+```
+CREATE RANGE INDEX matchEvtm FOR (n:MATCH_EVENT) ON n.matchEventTime;
+CREATE RANGE INDEX matchEvso FOR (n:MATCH_EVENT) ON n.sortOrder;
+CREATE RANGE INDEX matchEvtg FOR (n:MATCH_EVENT) ON n.isGoal;
+CREATE RANGE INDEX matchEvtf FOR (n:MATCH_EVENT) ON n.isFastBreak;
+CREATE TEXT INDEX playertxt FOR (n:PLAYER) ON n.text;
+CREATE TEXT INDEX matchEvttxt FOR (n:MATCH_EVENT) ON n.text;
+```
+
 ### Example
 ![graph_example](https://user-images.githubusercontent.com/22633509/97285861-ac21d400-183a-11eb-897e-7e41f3068666.png)
